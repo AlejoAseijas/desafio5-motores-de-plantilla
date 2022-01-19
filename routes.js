@@ -1,7 +1,7 @@
 const { Router } = require("express");
 const Productos = require("./Controller/productos");
 let productosReq = new Productos();
-
+const path = require("path");
 const router = Router();
 
 // Router
@@ -33,7 +33,7 @@ router.get("/productos/:id", async (req, res) => {
 
 router.post("/productos", async (req, res) => {
   const resData = await productosReq.post(req.body);
-  res.json(resData);
+  res.sendFile(path.join(__dirname + "/public/index.html"));
 });
 router.put("/productos/:id", async (req, res) => {
   const resData = await productosReq.put(req.params.id, req.body);
